@@ -6,8 +6,9 @@ import (
 
 func main() {
 	//s:= "ad日本語v日dfg"
-	s:= "yfsrsrpzuya"
+	//s:= "yfsrsrpzuya"
 	//s:= "dvdf"
+	s:= "aabaab!bb"
 
 	fmt.Println(lengthOfLongestSubstring(s))
 }
@@ -26,8 +27,12 @@ func lengthOfLongestSubstring(s string) int {
 			//current = make(map[rune]int)
 
 			//for _, k := range s[curIndex: i] {
-			for _, k := range s[lastIndex:curIndex] {
-				delete(current, k)
+			for delIndex, k := range s[lastIndex:curIndex] {
+				if _, ok := current[k]; ok {
+					if delIndex >= current[k] {
+						delete(current, k)
+					}
+				}
 				//current[k] = ni
 			}
 
