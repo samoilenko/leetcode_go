@@ -1,7 +1,7 @@
 package main
 
 type ListNode struct {
-	Val int
+	Val  int
 	Next *ListNode
 }
 
@@ -16,14 +16,14 @@ func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
 	return calc(l1, l2)
 }
 
-func calc(l1 *ListNode, l2 *ListNode) *ListNode{
+func calc(l1 *ListNode, l2 *ListNode) *ListNode {
 	var res *ListNode
 
-	extra := 0;
+	extra := 0
 	res = &ListNode{}
 	node := res
-	for{
-		n := l1.Val + l2.Val + extra;
+	for {
+		n := l1.Val + l2.Val + extra
 
 		if n < 10 {
 			node.Val = n
@@ -45,13 +45,13 @@ func calc(l1 *ListNode, l2 *ListNode) *ListNode{
 
 		if l1.Next == nil {
 			l1.Val = 0
-		}else {
+		} else {
 			l1 = l1.Next
 		}
 
 		if l2.Next == nil {
 			l2.Val = 0
-		}else {
+		} else {
 			l2 = l2.Next
 		}
 	}

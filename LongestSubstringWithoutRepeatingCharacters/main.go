@@ -6,42 +6,52 @@ import (
 
 func main() {
 	//s:= "ad日本語v日dfg"
-	//s:= "yfsrsrpzuya"
+	//s := "yfsrsrpzuya"
 	//s:= "dvdf"
-	s:= "aabaab!bb"
+	//s:= "aabaab!bb"
+	//s:= "jbpnbwwd" // 4
+	//s:= "bpfbhmipx" // 7
+	//s := "abcabcbb" //3
+	fmt.Println(lengthOfLongestSubstringWindowFrame(s))
+}
 
-	fmt.Println(lengthOfLongestSubstring(s))
+func lengthOfLongestSubstringWindowFrame(s string) int {
+	var maxLength int = 0
+	current := make(map[rune]int)
+	lastIndex := 0
+	for i, c := range s {
+		if curIndex, ok := current[c]; ok {
+			if maxLength < len(current) {
+				maxLength = len(current)
+			}
+			for _, v := range s[lastIndex:curIndex] {
+				delete(current, v)
+			}
+
+			lastIndex = curIndex + 1
+		}
+
+		current[c] = i
+	}
+
+	if maxLength < len(current) {
+		maxLength = len(current)
+	}
+
+	return maxLength
 }
 
 func lengthOfLongestSubstring(s string) int {
-	maxLength := 0
+	var maxLength int = 0
 	current := make(map[rune]int)
-	lastIndex := 0
 
-
-	for i, c:= range s {
+	for i, c := range s {
 		if curIndex, ok := current[c]; ok {
 			if len(current) > maxLength {
 				maxLength = len(current)
 			}
-			//current = make(map[rune]int)
 
-			//for _, k := range s[curIndex: i] {
-			for delIndex, k := range s[lastIndex:curIndex] {
-				if _, ok := current[k]; ok {
-					if delIndex >= current[k] {
-						delete(current, k)
-					}
-				}
-				//current[k] = ni
-			}
-
-			lastIndex = curIndex
-
-			//delete(current, c)
-			//for j := curIndex; j < i; {
-			//
-			//}
+			removeExtraChars(current, curIndex)
 		}
 
 		current[c] = i
@@ -52,6 +62,14 @@ func lengthOfLongestSubstring(s string) int {
 	}
 
 	return maxLength
+}
+
+func removeExtraChars(chars map[rune]int, index int) {
+	for i, v := range chars {
+		if index >= v {
+			delete(chars, i)
+		}
+	}
 }
 
 //func remove subsequence(s string, index int) {
