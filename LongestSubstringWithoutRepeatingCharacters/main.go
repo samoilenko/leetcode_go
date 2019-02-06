@@ -9,10 +9,33 @@ func main() {
 	//s := "yfsrsrpzuya"
 	//s:= "dvdf"
 	//s:= "aabaab!bb"
-	//s:= "jbpnbwwd" // 4
+	s:= "jbpnbwwd" // 4
 	//s:= "bpfbhmipx" // 7
 	//s := "abcabcbb" //3
-	fmt.Println(lengthOfLongestSubstringWindowFrame(s))
+	fmt.Println(withoutDeleting(s))
+}
+
+func withoutDeleting(s string) int {
+	var maxLength int = 0
+	current := make(map[rune]int)
+	lastIndex := 0
+	for i, c := range s {
+		if curIndex, ok := current[c]; ok {
+			if i - lastIndex > maxLength {
+				maxLength = i - lastIndex
+			}
+
+			lastIndex = curIndex
+		}
+
+		current[c] = i
+	}
+
+	if maxLength < len(s) -lastIndex {
+		//maxLength = len(s) -lastIndex
+	}
+
+	return maxLength
 }
 
 func lengthOfLongestSubstringWindowFrame(s string) int {
