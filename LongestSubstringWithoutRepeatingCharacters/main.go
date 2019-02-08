@@ -1,38 +1,27 @@
 package main
 
-import (
-	"fmt"
-)
-
 func main() {
-	//s:= "ad日本語v日dfg"
-	//s := "yfsrsrpzuya"
-	//s:= "dvdf"
-	//s:= "aabaab!bb"
-	s:= "jbpnbwwd" // 4
-	//s:= "bpfbhmipx" // 7
-	//s := "abcabcbb" //3
-	fmt.Println(withoutDeleting(s))
+
 }
 
 func withoutDeleting(s string) int {
 	var maxLength int = 0
 	current := make(map[rune]int)
+	j := 0
 	lastIndex := 0
 	for i, c := range s {
-		if curIndex, ok := current[c]; ok {
-			if i - lastIndex > maxLength {
-				maxLength = i - lastIndex
-			}
-
+		if curIndex, ok := current[c]; ok && curIndex >= lastIndex {
+			j = i - curIndex
 			lastIndex = curIndex
+		} else {
+			j += 1
+		}
+
+		if j > maxLength {
+			maxLength = j
 		}
 
 		current[c] = i
-	}
-
-	if maxLength < len(s) -lastIndex {
-		//maxLength = len(s) -lastIndex
 	}
 
 	return maxLength
@@ -94,9 +83,3 @@ func removeExtraChars(chars map[rune]int, index int) {
 		}
 	}
 }
-
-//func remove subsequence(s string, index int) {
-//for i, c:= range s {
-
-//}
-//}
