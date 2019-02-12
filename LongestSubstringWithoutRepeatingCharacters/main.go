@@ -1,7 +1,18 @@
 package main
 
-func main() {
+import (
+	"fmt"
+)
 
+func main() {
+	//s:= "ad日本語v日dfg"
+	//s := "yfsrsrpzuya"
+	//s:= "dvdf"
+	s := "aabaab!bb" // 3
+	//s:= "jbpnbwwd" // 4
+	//s:= "bpfbhmipx" // 7
+	//s := "abcabcbb" //3
+	fmt.Println(withoutDeleting(s))
 }
 
 func withoutDeleting(s string) int {
@@ -83,3 +94,9 @@ func removeExtraChars(chars map[rune]int, index int) {
 		}
 	}
 }
+
+//func remove subsequence(s string, index int) {
+//for i, c:= range s {
+
+//}
+//}
