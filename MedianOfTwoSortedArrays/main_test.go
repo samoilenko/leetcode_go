@@ -17,6 +17,11 @@ func testCases()[]*TestCase {
 			nums2: []int{2},
 			expected: 2,
 		},
+		{
+			nums1: []int{1, 4},
+			nums2: []int{2, 3},
+			expected: 2.5,
+		},
 	}
 }
 
