@@ -6,23 +6,33 @@ import (
 
 type TestCase struct {
 	data  string
-	count int
+	expected string
 }
 
 func testCases() []TestCase {
 	return []TestCase{
-
+		{
+			"babad",
+			"bab",
+		},
+		{
+			"cbbd",
+			"bb",
+		},
+		{
+			"cbbdqwertyuio",
+			"bb",
+		},
 	}
 }
 
-func TestAllAvailableFunctions(t *testing.T) {
+func TestLongestPalindrome(t *testing.T) {
 	cases := testCases()
 
 	for caseNum, item := range cases {
-		countLetters := currentFunc(item.data)
-		if countLetters != item.count {
-			t.Errorf("Function %s, case: [%d] does not match, Got: %d. Expected: %d",
-				funcName[strings.LastIndexAny(funcName, ".")+1:], caseNum, countLetters, item.count)
+		res := longestPalindrome(item.data)
+		if res != item.expected {
+			t.Errorf("case: [%d] does not match, Got: %s. Expected: %s", caseNum, res, item.expected)
 		}
 	}
 }

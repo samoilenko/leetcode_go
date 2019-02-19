@@ -5,13 +5,7 @@ import (
 )
 
 func main() {
-	//s:= "ad日本語v日dfg"
-	//s := "yfsrsrpzuya"
-	//s:= "dvdf"
 	s := "aabaab!bb" // 3
-	//s:= "jbpnbwwd" // 4
-	//s:= "bpfbhmipx" // 7
-	//s := "abcabcbb" //3
 	fmt.Println(withoutDeleting(s))
 }
 
